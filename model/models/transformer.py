@@ -1,5 +1,8 @@
+import torch
+import torch.nn as nn
+from model.models.self_attention import SelfAttention
 
-# Define Transformer block module
+
 class TransformerBlock(nn.Module):
     def __init__(self, embed_size, head_count):
         super(TransformerBlock, self).__init__()
@@ -22,6 +25,7 @@ class TransformerBlock(nn.Module):
         out = attention + self.feed_forward(out)
         out = self.norm2(out)
         return out
+
 
 # Define Transformer module
 class Transformer(nn.Module):
@@ -69,7 +73,5 @@ class Transformer(nn.Module):
 
     def get_angles(self, pos, i, embed_size):
         # Compute angle rate for each position and dimension
-        angle_rates = 1 / torch.pow(10000, (2 * (i//2)) / embed_size)
+        angle_rates = 1 / torch.pow(10000, (2 * (i // 2)) / embed_size)
         return pos * angle_rates
-
-

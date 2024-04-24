@@ -1,4 +1,7 @@
 # Define Self-Attention module
+import torch
+import torch.nn as nn
+
 class SelfAttention(nn.Module):
     def __init__(self, embed_size, head_count):
         super(SelfAttention, self).__init__()
