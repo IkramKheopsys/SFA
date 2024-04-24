@@ -1,5 +1,6 @@
 import torch
 import json
+
 class DataProcessor:
     def __init__(self, file_path):
         self.training_data = None
@@ -12,7 +13,7 @@ class DataProcessor:
 
 
     def get_data_and_vocab(self):
-        with open('output.json', 'r') as file:
+        with open('training_data.json', 'r') as file:
             json_data = json.load(file)
 
         # Convert JSON data to Python list of dictionaries
@@ -39,6 +40,8 @@ class DataProcessor:
         # Create mappings from word to index and index to word
         self.word_to_ix = {self.vocabulary_words[k].lower(): k for k in range(len(self.vocabulary_words))}
         self.ix_to_word = {v: k for k, v in self.word_to_ix.items()}
+        return self.training_data, self.data_words, self.target_words, self.vocabulary_words, self.word_to_ix, self.ix_to_word
+
 
     def words_to_tensor(self, seq_batch, device=None):
         index_batch = []

@@ -1,3 +1,4 @@
+import torch
 def train_recursive(model, data, targets, optimizer, criterion):
     model.train()  # Set model to training mode
     optimizer.zero_grad()  # Zero the gradients

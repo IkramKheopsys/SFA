@@ -1,5 +1,6 @@
+import torch
 
-def infer_recursive(model, input_vectors, max_output_token_count=10):
+def infer_recursive(model, input_vectors, word_to_ix,processor,max_output_token_count=10):
     model.eval()  # Set model to evaluation mode
     outputs = []
 
@@ -22,5 +23,5 @@ def infer_recursive(model, input_vectors, max_output_token_count=10):
                 input_vector = torch.cat([input_vector, torch.tensor([[predicted_index]])], dim=1)
                 wc += 1
         outputs.append(torch.tensor(predicted_sequence))  # Append predicted sequence to outputs
-    outputs = pad_tensors(outputs)  # Pad predicted sequences to the same length
+    outputs = processor.pad_tensors(outputs)  # Pad predicted sequences to the same length
     return outputs

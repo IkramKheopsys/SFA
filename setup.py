@@ -7,5 +7,5 @@ setup(
     name="SFA",
     version="0.1",
     packages=find_packages(),
-    install_requires=['torch'],
+    install_requires=['torch','numpy'],
 )
