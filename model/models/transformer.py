@@ -41,7 +41,8 @@ class Transformer(nn.Module):
         )
         self.fc_out = nn.Linear(embed_size, vocab_size)  # Final linear layer to produce logits
 
-    def forward(self, input_tokens, mask=None):
+    def forward(self, input_tokens, mask=None,from_get_embeddings=False):
+
         batch_size, token_count = input_tokens.shape[:2]
         out = self.word_embedding(input_tokens)  # Obtain word embeddings
 
@@ -49,14 +50,15 @@ class Transformer(nn.Module):
         positions = torch.arange(0, token_count).expand(batch_size, token_count).to(input_tokens.device)
         position_encoding = self.position_encoding(positions, self.embed_size)
         out += position_encoding.reshape(out.shape)
-
-        # Pass through each transformer block
-        for layer in self.layers:
-            out = layer(out)
-
-        # Produce logits for the final token in each sequence
-        out = self.fc_out(out[:, -1, :].reshape(batch_size, self.embed_size)).reshape(batch_size, self.vocab_size)
-        return torch.nn.functional.softmax(out, dim=1)  # Apply softmax to obtain probabilities
+        if from_get_embeddings:
+            return out
+        else :
+            # Pass through each transformer block
+            for layer in self.layers:
+                out = layer(out)
+            # Produce logits for the final token in each sequence
+            out = self.fc_out(out[:, -1, :].reshape(batch_size, self.embed_size)).reshape(batch_size, self.vocab_size)
+            return torch.nn.functional.softmax(out, dim=1)  # Apply softmax to obtain probabilities
 
     def position_encoding(self, positions, embed_size):
         # Compute position encoding for each position and dimension
