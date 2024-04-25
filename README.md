@@ -37,7 +37,49 @@ Run the main.py script using the following command:
 
 This will execute the TextGeneration and get_embeddings functions with the specified training data file.
 
+## Dataset Format
+The dataset used for training should follow a specific format, as exemplified below:
 
+```
+{
+    "training_data": [
+        {
+            "input": "what is your name",
+            "output": "my name is abdoul <end>"
+        },
+        {
+            "input": "what's your company name",
+            "output": "My company's name is kheopsys <end>"
+        },
+        {
+            "input": "who is Abdoul",
+            "output": "Abdoul is the ceo of kheopsys <end>"
+        },
+        {
+            "input": "where is Kheopsys",
+            "output": "It's located in Paris <end>"
+        },
+
+        {
+            "input": "who are you",
+            "output": "mini gpt model <end>"
+        }
+    ]
+}
+
+```
+
+Each training example consists of an "input" and an "output" field, representing the input sequence and its corresponding target sequence, respectively. The "<end>" token signifies the end of the output sequence.
+
+Additional Datasets
+Here are some other datasets that may be relevant for our purposes:
+
+First Dataset (45 rows): https://huggingface.co/datasets/LLMao/standard_qa/blob/main/data/train-00000-of-00001.parquet
+Second Dataset (2.56k rows): https://huggingface.co/datasets/Anthropic/llm_global_opinions
+Third Dataset (Bollywood, 6k rows): https://huggingface.co/datasets/LLMao/qa_Bollywood?row=32
+Fourth Dataset (Short Answers, 36k rows): https://huggingface.co/datasets/UCLNLP/adversarial_qa?row=12
+
+These datasets can be processed similarly to the provided example, where each answer is concatenated with "<end>" to signify the end of the sequence. Adjustments may be necessary based on the specific dataset being used.
 
 
 ## Embedding Calculation
