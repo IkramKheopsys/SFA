@@ -13,7 +13,7 @@ class DataProcessor:
 
 
     def get_data_and_vocab(self):
-        with open('training_data.json', 'r') as file:
+        with open(self.file_path, 'r') as file:
             json_data = json.load(file)
 
         # Convert JSON data to Python list of dictionaries
