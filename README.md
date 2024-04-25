@@ -77,5 +77,6 @@ The embedding calculation is completed by stacking multiple Transformer blocks o
 ### Position Encoding
 
 To incorporate positional information into the embeddings, position encoding is applied to the input embeddings before passing them through the Transformer blocks. Position encoding utilizes trigonometric functions to calculate a vector that encodes the position of each token in the sequence. This vector is added to the input embeddings to create position-encoded embeddings, ensuring that the model can differentiate between tokens based on their position in the sequence.
-
+## How Inference Work
+![image](https://github.com/IkramKheopsys/SFA/assets/113558455/e43621a9-8938-41e2-abfb-27aebef8e2af)
 
