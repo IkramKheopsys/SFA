@@ -38,7 +38,8 @@ Run the main.py script using the following command:
 This will execute the TextGeneration and get_embeddings functions with the specified training data file.
 
 In colab you can clone this repo, go to the SFA file :
-```import os
+```
+import os
 os.chdir('SFA')
 !pwd
 ```
