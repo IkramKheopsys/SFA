@@ -9,7 +9,6 @@ from model.utils.data_processing import DataProcessor
 
 def TextGeneration(file_path):
     processor = DataProcessor(file_path)
-    #processor = DataProcessor('training_data.json')
     training_data, data_words, target_words, vocabulary_words, word_to_ix, ix_to_word = processor.get_data_and_vocab()
     vocab_size = len(word_to_ix)
     embed_size = 512
@@ -33,9 +32,7 @@ def TextGeneration(file_path):
 
 
 def get_embeddings(file_path):
-    # Importez les bibliothèques nécessaires
     processor = DataProcessor(file_path)
-    # Chargez les données d'entraînement et construisez le vocabulaire
     training_data, data_words, target_words, vocabulary_words, word_to_ix, ix_to_word = processor.get_data_and_vocab()
 
     # Get model hyperparameters from vocabulary size
