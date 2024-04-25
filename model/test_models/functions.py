@@ -5,7 +5,7 @@ from model.models.transformer import Transformer
 from model.train.train import train_recursive
 from model.inference.inference import infer_recursive
 from model.utils.data_processing import DataProcessor
-
+from model.evaluation.evaluation import evaluation_metrics
 
 def TextGeneration(file_path):
     processor = DataProcessor(file_path)
@@ -28,6 +28,8 @@ def TextGeneration(file_path):
     predicted_vector = infer_recursive(model, input_vector, word_to_ix, processor)
     predicted_words = processor.tensor_to_words(predicted_vector)
     result_data = {data_words[k]: predicted_words[k] for k in range(len(predicted_words))}
+    evaluation = evaluation_metrics(predicted_vector,input_vector)
+    print('evaluation metrics = :',evaluation)
     return result_data
 
 
