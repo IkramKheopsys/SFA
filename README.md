@@ -29,7 +29,10 @@ To use the text generation and embeddings functions, follow the steps below:
 where each key is a training sentence and each value is the corresponding target
 
 
+
 Place your training data file in the same directory as the main.py script.
+
 Run the main.py script using the following command:
-python main.py
+```python main.py```
+
 This will execute the TextGeneration and get_embeddings functions with the specified training data file.
