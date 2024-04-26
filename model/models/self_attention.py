@@ -27,7 +27,9 @@ class SelfAttention(nn.Module):
         # Compute energy terms for each head, batch, and pair of tokens
         energy = torch.zeros(self.head_count, batch_size, token_count, token_count).to(embeddings.device)
         # Create a mask with false on and below the diagonal, and true above the diagonal
-        mask = torch.triu(torch.ones((token_count, token_count)), diagonal=1).bool()
+        #mask = torch.triu(torch.ones((token_count, token_count)), diagonal=1).bool()
+        mask = torch.triu(torch.ones((token_count, token_count), device=embeddings.device), diagonal=1).bool()
+
 
         for h in range(self.head_count):
             for b in range(batch_size):
@@ -57,7 +59,8 @@ class SelfAttention(nn.Module):
 
         # Create a mask with zeros on and below the diagonal, and negative infinity above the diagonal
         mask = torch.triu(torch.ones((max_token_count, max_token_count)), diagonal=1) * float('-inf')
-        mask = mask.unsqueeze(0).unsqueeze(0)  # Add dimensions for batch and embedding size
+
+        mask = mask.unsqueeze(0).unsqueeze(0).to(energy.device)  # Add dimensions for batch and embedding size
         mask = mask.expand(batch_size, embed_size, -1, -1)  # Expand mask to match batch and embedding size
 
         # Apply the mask to the scores
