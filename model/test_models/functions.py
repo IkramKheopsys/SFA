@@ -25,11 +25,12 @@ def TextGeneration(file_path):
         avg_loss = train_recursive(model, data, targets, optimizer, criterion)
 
     input_vector = processor.words_to_tensor(data_words, device=device)
+    print("Input vector = ", input_vector)
     predicted_vector = infer_recursive(model, input_vector, word_to_ix, processor)
     predicted_words = processor.tensor_to_words(predicted_vector)
     result_data = {data_words[k]: predicted_words[k] for k in range(len(predicted_words))}
     evaluation = evaluation_metrics(predicted_vector,input_vector)
-    print('evaluation metrics = :',evaluation)
+    print('evaluation metrics = :', evaluation)
     return result_data
 
 

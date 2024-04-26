@@ -11,10 +11,10 @@ def main():
     print("Text Generation:")
     print(model_output)
 
-    Embedding_output = get_embeddings(file_path)
-    print("\n\n")
-    print("Embeddings:")
-    print(Embedding_output)
+    #Embedding_output = get_embeddings(file_path)
+    #print("\n\n")
+    #print("Embeddings:")
+    #print(Embedding_output)
 
 
 
