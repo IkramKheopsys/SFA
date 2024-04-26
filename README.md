@@ -52,27 +52,24 @@ The dataset used for training should follow a specific format, as exemplified be
 ```
 {
     "training_data": [
-        {
-            "input": "what is your name",
-            "output": "my name is abdoul <end>"
+          {
+            "input": "how are you",
+            "output": "i am fine <end>"
         },
         {
-            "input": "what's your company name",
-            "output": "My company's name is kheopsys <end>"
+            "input": "who is john",
+            "output": "a nice person <end>"
         },
         {
-            "input": "who is Abdoul",
-            "output": "Abdoul is the ceo of kheopsys <end>"
-        },
-        {
-            "input": "where is Kheopsys",
-            "output": "It's located in Paris <end>"
+            "input": "who is nice",
+            "output": "john <end>"
         },
 
         {
             "input": "who are you",
             "output": "mini gpt model <end>"
         }
+      , ...
     ]
 }
 
