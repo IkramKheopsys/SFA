@@ -7,7 +7,7 @@ from model.inference.inference import infer_recursive
 from model.utils.data_processing import DataProcessor
 from model.evaluation.evaluation import evaluation_metrics
 
-def TextGeneration(file_path):
+def text_generation(file_path):
     processor = DataProcessor(file_path)
     training_data, data_words, target_words, vocabulary_words, word_to_ix, ix_to_word = processor.get_data_and_vocab()
     vocab_size = len(word_to_ix)
