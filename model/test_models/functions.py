@@ -14,7 +14,10 @@ def text_generation(file_path):
     embed_size = 512
     num_layers = 4
     heads = 3
-    device = torch.device("cpu")
+    if torch.cuda.is_available():
+        device = torch.device("cuda")
+    else:
+        device = torch.device("cpu")
     model = Transformer(vocab_size, embed_size, num_layers, heads).to(device)
     optimizer = optim.Adam(model.parameters(), lr=0.00001)
     criterion = nn.CrossEntropyLoss()
