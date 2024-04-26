@@ -18,6 +18,7 @@ def text_generation(file_path):
         device = torch.device("cuda")
     else:
         device = torch.device("cpu")
+
     model = Transformer(vocab_size, embed_size, num_layers, heads).to(device)
     optimizer = optim.Adam(model.parameters(), lr=0.00001)
     criterion = nn.CrossEntropyLoss()

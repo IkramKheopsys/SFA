@@ -59,7 +59,12 @@ class DataProcessor:
         return self.pad_tensors(index_batch)
 
     def tensor_to_words(self, tensor):
-        index_batch = tensor.cpu().numpy().tolist()
+        #index_batch = tensor.cpu().numpy().tolist()
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        if torch.cuda.is_available():
+            tensor = tensor.cuda()
+        index_batch = tensor.to(device).cpu().numpy().tolist()
+
         res = []
         for indices in index_batch:
             words = []
